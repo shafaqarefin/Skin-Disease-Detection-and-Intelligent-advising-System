@@ -16,6 +16,8 @@ class Settings:
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY")
     # Use our dynamically generated path
     MODEL_PATH: str = DYNAMIC_MODEL_PATH
+    # Updated to the latest Gemini Pro model
+    LLM_MODEL: str = "models/gemini-2.5-pro"
 
 
 settings = Settings()
