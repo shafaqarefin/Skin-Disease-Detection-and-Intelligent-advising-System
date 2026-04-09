@@ -6,7 +6,7 @@ import hashlib
 
 
 class DatabaseService:
-    """Service for database operations"""
+    """A single DB object for all interaction"""
 
     @staticmethod
     def create_user(db: Session, username: str, password: str, email: str) -> User:
