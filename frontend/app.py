@@ -555,4 +555,4 @@ else:
                         f"<div class='chat-answer'>💡 **A:** {asst_msg}</div>", unsafe_allow_html=True)
 
     # Footer
-    st.markdown("<hr><p style='text-align: center; color: white; font-size: 12px;'>© 2024 Skin Disease Analyzer. All rights reserved.</p>", unsafe_allow_html=True)
+    st.markdown("<hr><p style='text-align: center; color: white; font-size: 12px;'>© 2026 Skin Disease Analyzer. All rights reserved.</p>", unsafe_allow_html=True)
