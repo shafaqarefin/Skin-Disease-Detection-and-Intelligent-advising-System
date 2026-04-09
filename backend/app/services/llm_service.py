@@ -1,14 +1,15 @@
 import google.generativeai as genai
 import json
 from app.core.config import settings
+from typing import List, Optional
+from app.schemas.responses import Message
 
-# Configure the SDK with the secure key
 genai.configure(api_key=settings.GEMINI_API_KEY)
-llm = genai.GenerativeModel('models/gemini-2.5-flash')
+llm = genai.GenerativeModel(settings.LLM_MODEL)
 
 
 def get_medical_advice(disease: str, confidence: float) -> dict:
-    """Sends the CV prediction to Gemini and returns structured advice."""
+    """Sends the CV prediction to Gemini and returns structured advice with system context for chatting."""
 
     prompt = f"""
     You are an expert AI dermatology assistant. A computer vision model has detected '{disease}' 
@@ -33,29 +34,73 @@ def get_medical_advice(disease: str, confidence: float) -> dict:
         "```json", "").replace("```", "").strip()
 
     # Convert string to Python dictionary
-    return json.loads(clean_json_string)
+    result = json.loads(clean_json_string)
+
+    # Add system context for subsequent multi-turn conversation
+    result["system_context"] = f"""You are an expert AI dermatology assistant. A patient has been diagnosed with '{disease}' (confidence: {confidence:.2f}) from a skin image analysis. 
+
+You will have access to the full conversation history. Maintain consistency with previous responses and provide helpful, accurate medical information. Always encourage the patient to consult a dermatologist for professional medical advice."""
+
+    return result
 
 
-def chat_about_diagnosis(disease: str, confidence: float, user_message: str) -> str:
-    """Chat with the LLM about the diagnosed condition."""
+def chat_about_diagnosis(disease: str, confidence: float, user_message: str, history: Optional[List[Message]] = None, system_context: str = None) -> tuple:
+    """Multi-turn conversation chat with full conversation history tracking.
+
+    Maintains complete conversation history and uses system role for context.
+
+    Args:
+        disease: The diagnosed disease
+        confidence: Confidence level of the diagnosis
+        user_message: The current user message
+        history: Previous messages in the conversation (from temporary session memory)
+        system_context: System role that was set during analysis
+
+    Returns:
+        Tuple of (response_text, updated_history)
+    """
 
     try:
-        prompt = f"""
-You are an expert AI dermatology assistant. A patient has been diagnosed with '{disease}' 
-(confidence: {confidence:.2f}) from a skin image analysis.
+        # Build full conversation context from temporary history
+        conversation_context = ""
+        if history and len(history) > 0:
+            conversation_context = "\n\n=== CONVERSATION HISTORY ===\n"
+            for msg in history:
+                role = "Patient" if msg.role == "user" else "Assistant"
+                conversation_context += f"\n{role}: {msg.content}"
+            conversation_context += "\n\n=== END HISTORY ===\n"
 
-The patient has asked: {user_message}
+        # Use the system context if provided, otherwise create a default one
+        if not system_context:
+            system_context = f"""You are an expert AI dermatology assistant. A patient has been diagnosed with '{disease}' (confidence: {confidence:.2f}) from a skin image analysis. 
 
-Provide helpful, accurate medical information about their condition in response to their question.
-Keep responses concise and practical. Always remind them to consult a dermatologist for professional medical advice.
-        """
+You will have access to the full conversation history. Maintain consistency with previous responses and provide helpful, accurate medical information. Always encourage the patient to consult a dermatologist for professional medical advice."""
+
+        prompt = f"""{system_context}
+{conversation_context}
+Patient's current message: {user_message}
+
+Provide a helpful response to their message. Keep it concise and practical."""
 
         response = llm.generate_content(prompt)
 
         if response and hasattr(response, 'text'):
-            return response.text
+            response_text = response.text
+
+            # Update history with new user message and assistant response
+            # Always initialize as list if None
+            updated_history = list(history) if history else []
+
+            # Append user message
+            updated_history.append(Message(role="user", content=user_message))
+
+            # Append assistant response
+            updated_history.append(
+                Message(role="assistant", content=response_text))
+
+            return response_text, updated_history
         else:
-            return "Unable to generate response. Please try again."
+            raise Exception("Unable to generate response. Please try again.")
 
     except Exception as e:
         print(f"Error in chat_about_diagnosis: {str(e)}")
