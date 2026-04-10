@@ -140,6 +140,10 @@ py -3.11 -m venv venv
 # Activate virtual environment
 # On Windows:
 .\venv\Scripts\activate
+
+#Gitbash on Windows
+source venv/Scripts/activate
+
 # On macOS/Linux:
 source venv/bin/activate
 
