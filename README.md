@@ -92,6 +92,22 @@ echo GEMINI_API_KEY=your_api_key_here > .env
 # Run the backend
 uvicorn app.main:app --reload --port 8000
 ```
+### Option 2: Docker Deployment (Easiest - Pre-built Image) ⭐ RECOMMENDED
+
+The Docker image is already built and uploaded to Docker Hub with all models included. This is the **fastest way** to get the backend running!
+
+#### Pull and Run Pre-built Image
+```bash
+# Pull the pre-built image (includes all models)
+docker pull shafaqarefin/skin-disease-api:latest
+
+# Run the container
+docker run -p 8000:8000 \
+  -e GEMINI_API_KEY=your_api_key_here \
+  shafaqarefin/skin-disease-api:latest
+```
+
+The backend API will be available at: `http://localhost:8000`
 
 The API will be available at: `http://localhost:8000`
 
@@ -104,8 +120,10 @@ cd frontend
 py -3.11 -m venv venv
 
 # Activate virtual environment
-# On Windows Gitbash:
-source .\venv\Scripts\activate
+# On Windows:
+.\venv\Scripts\activate
+#On Gitbash:
+source .venv/Scripts/activate
 # On macOS/Linux:
 source venv/bin/activate
 
@@ -120,27 +138,39 @@ The frontend will open at: `http://localhost:8501`
 
 ---
 
-### Option 2: Docker Deployment (Production Ready)
+
+
+✅ **Advantages:**
+- No need to download models separately
+- No build time needed
+- Image is optimized and tested
+- Just pull and run!
+
+---
+
+### Option 3: Build Your Own Docker Image (Advanced)
+
+If you want to build the image yourself with your own modifications:
 
 ⚠️ **Important:** Make sure you've [downloaded the models](#download-models) first and placed them in `backend/model/` before building the Docker image.
 
 #### Build the Image
 ```bash
 cd backend
-docker build -t shafaqarefin/skin-disease-api:v1.0 .
+docker build -t your-username/skin-disease-api:v1.0 .
 ```
 
 #### Run with Docker
 ```bash
 docker run -p 8000:8000 \
   -e GEMINI_API_KEY=your_api_key_here \
-  shafaqarefin/skin-disease-api:v1.0
+  your-username/skin-disease-api:v1.0
 ```
 
-#### Push to Docker Hub
+#### Push Your Image to Docker Hub
 ```bash
 docker login
-docker push shafaqarefin/skin-disease-api:v1.0
+docker push your-username/skin-disease-api:v1.0
 ```
 
 ---
@@ -151,54 +181,6 @@ docker push shafaqarefin/skin-disease-api:v1.0
 ```
 http://localhost:8000
 ```
-
-### Authentication Endpoints
-
-#### Register
-```http
-POST /auth/register
-Content-Type: application/json
-
-{
-  "username": "john_doe",
-  "email": "john@example.com",
-  "password": "secure_password"
-}
-```
-
-**Response (200):**
-```json
-{
-  "user_id": 1,
-  "username": "john_doe",
-  "email": "john@example.com",
-  "message": "User registered successfully"
-}
-```
-
----
-
-#### Login
-```http
-POST /auth/login
-Content-Type: application/json
-
-{
-  "username": "john_doe",
-  "password": "secure_password"
-}
-```
-
-**Response (200):**
-```json
-{
-  "user_id": 1,
-  "username": "john_doe",
-  "token": "jwt_token_here"
-}
-```
-
----
 
 ### Analysis Endpoints
 
@@ -309,6 +291,54 @@ GET /auth/session/{session_id}
       "content": "..."
     }
   ]
+}
+```
+
+---
+
+### Authentication Endpoints
+
+#### Register
+```http
+POST /auth/register
+Content-Type: application/json
+
+{
+  "username": "john_doe",
+  "email": "john@example.com",
+  "password": "secure_password"
+}
+```
+
+**Response (200):**
+```json
+{
+  "user_id": 1,
+  "username": "john_doe",
+  "email": "john@example.com",
+  "message": "User registered successfully"
+}
+```
+
+---
+
+#### Login
+```http
+POST /auth/login
+Content-Type: application/json
+
+{
+  "username": "john_doe",
+  "password": "secure_password"
+}
+```
+
+**Response (200):**
+```json
+{
+  "user_id": 1,
+  "username": "john_doe",
+  "token": "jwt_token_here"
 }
 ```
 
