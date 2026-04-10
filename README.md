@@ -164,6 +164,11 @@ Make sure your backend is running on `http://localhost:8000` before starting the
 
 ## �📖 API Documentation
 
+### API Swagger docs
+```
+http://localhost:8000/docs
+```
+
 ### Base URL
 ```
 http://localhost:8000
