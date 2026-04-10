@@ -58,7 +58,8 @@ An AI-powered web application that analyzes skin images and provides disease rec
 
 #### Step 1: Download Models
 1. Open the [Google Drive link](https://drive.google.com/drive/folders/1tReaIM4Gju7Aa64bta5iQT_BmkSNfP2_?usp=sharing)
-2. Download the `model` folder (contains `model_v1.h5`, `model_v2.h5`, `model_v3.h5`)
+2. Download the `model` folder (contains various version `model_v1.h5`, `model_v2.h5`, `model_v3.h5`)
+3.You can set model to use in config file by replacing model name with the model you want.You can use the default set model
 3. Extract it to your backend directory:
    ```
    backend/
