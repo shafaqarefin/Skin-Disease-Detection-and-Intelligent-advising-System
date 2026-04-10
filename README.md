@@ -100,6 +100,7 @@ The API will be available at: `http://localhost:8000`
 ### Option 2: Docker Deployment (Easiest - Pre-built Image) ⭐ RECOMMENDED
 
 The Docker image is already built and uploaded to Docker Hub with all models included. This is the **fastest way** to get the backend running!
+(https://hub.docker.com/repository/docker/shafaqarefin/skin-disease-api/general)
 
 #### Pull and Run Pre-built Image
 ```bash
