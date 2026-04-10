@@ -6,7 +6,7 @@ load_dotenv()
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-DYNAMIC_MODEL_PATH = str(BASE_DIR / "model" / "model_v1.h5")
+DYNAMIC_MODEL_PATH = str(BASE_DIR / "model" / "model_v3.h5")
 
 
 class Settings:
