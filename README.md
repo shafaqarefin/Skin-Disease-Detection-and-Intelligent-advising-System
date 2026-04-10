@@ -156,7 +156,7 @@ Make sure your backend is running on `http://localhost:8000` before starting the
 
 ---
 
-## � Database Schema
+##  Database Schema
 
 ![Database Schema Diagram](docs/images/db_diagram.png)
 
