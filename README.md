@@ -16,12 +16,42 @@ An AI-powered web application that analyzes skin images and provides disease rec
 
 ---
 
-## 🚀 Quick Start
+## � Initial Setup
+
+### Clone the Repository
+
+1. **Create a folder** for the project (e.g., on your Desktop or Documents):
+   ```bash
+   mkdir Skin-Disease-Detection
+   cd Skin-Disease-Detection
+   ```
+
+2. **Open in VS Code:**
+   ```bash
+   code .
+   ```
+   Or use File → Open Folder in VS Code
+
+3. **Clone the repository:**
+   ```bash
+   git clone https://github.com/shafaqarefin/Skin-Disease-Detection-and-Intelligent-advising-System.git .
+   ```
+   (Note: The `.` at the end clones into the current directory)
+
+4. **Verify the structure:**
+   ```bash
+   ls
+   # You should see: backend, frontend, training, README.md, LICENSE
+   ```
+
+---
+
+## �🚀 Quick Start
 
 ### Option 1: Local Development (Recommended for Testing)
 
 #### Prerequisites
-- Python 3.11+
+- Python 3.11
 - pip/conda
 - Git
 - **EfficientNet Models** - Download from [Google Drive](https://drive.google.com/drive/folders/1tReaIM4Gju7Aa64bta5iQT_BmkSNfP2_?usp=sharing) and extract the `model/` folder to the `backend/` directory
@@ -33,6 +63,7 @@ An AI-powered web application that analyzes skin images and provides disease rec
    ```
    backend/
    ├── model/
+       |__ __init__.py
    │   ├── model_v1.h5
    │   ├── model_v2.h5
    │   └── model_v3.h5
