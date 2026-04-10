@@ -377,7 +377,7 @@ Skin Disease Recommendation Project/
 │   │   │   └── prediction_service.py
 │   │   └── utils/
 │   ├── model/
-│   │   ├── model_v1.h5         # EfficientNet models
+│   │   ├── model_v1.h5         # EfficientNet models various versions
 │   │   ├── model_v2.h5
 │   │   └── model_v3.h5
 │   ├── Dockerfile
@@ -387,7 +387,7 @@ Skin Disease Recommendation Project/
 │   ├── app.py                  # Streamlit application
 │   └── requirements.txt
 ├── training/
-│   ├── training_v1.ipynb       # Model training notebooks
+│   ├── training_v1.ipynb       # Model training notebooks various versions
 │   └── training_v2.ipynb
 └── README.md
 ```
