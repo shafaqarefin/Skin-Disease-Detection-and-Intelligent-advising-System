@@ -46,7 +46,7 @@ An AI-powered web application that analyzes skin images and provides disease rec
 
 ---
 
-## �🚀 Quick Start
+## 🖥️ Backend Setup
 
 ### Option 1: Local Development (Recommended for Testing)
 
@@ -56,20 +56,20 @@ An AI-powered web application that analyzes skin images and provides disease rec
 - Git
 - **EfficientNet Models** - Download from [Google Drive](https://drive.google.com/drive/folders/1tReaIM4Gju7Aa64bta5iQT_BmkSNfP2_?usp=sharing) and extract the `model/` folder to the `backend/` directory
 
-#### Download Models
+#### Step 1: Download Models
 1. Open the [Google Drive link](https://drive.google.com/drive/folders/1tReaIM4Gju7Aa64bta5iQT_BmkSNfP2_?usp=sharing)
 2. Download the `model` folder (contains `model_v1.h5`, `model_v2.h5`, `model_v3.h5`)
 3. Extract it to your backend directory:
    ```
    backend/
    ├── model/
-       |__ __init__.py
+   │   ├── __init__.py
    │   ├── model_v1.h5
    │   ├── model_v2.h5
    │   └── model_v3.h5
    ```
 
-#### Backend Setup
+#### Step 2: Setup Backend
 ```bash
 # Navigate to backend directory
 cd backend
@@ -92,6 +92,11 @@ echo GEMINI_API_KEY=your_api_key_here > .env
 # Run the backend
 uvicorn app.main:app --reload --port 8000
 ```
+
+The API will be available at: `http://localhost:8000`
+
+---
+
 ### Option 2: Docker Deployment (Easiest - Pre-built Image) ⭐ RECOMMENDED
 
 The Docker image is already built and uploaded to Docker Hub with all models included. This is the **fastest way** to get the backend running!
@@ -109,11 +114,24 @@ docker run -p 8000:8000 \
 
 The backend API will be available at: `http://localhost:8000`
 
-The API will be available at: `http://localhost:8000`
+✅ **Advantages:**
+- No need to download models separately
+- No build time needed
+- Image is optimized and tested
+- Just pull and run!
 
-#### Frontend Setup (in new terminal)
+---
+
+## 🎨 Frontend Setup
+
+#### Prerequisites
+- Python 3.11+
+- pip/conda
+- Backend API running (from Backend Setup above)
+
+#### Setup Steps
 ```bash
-# Navigate to frontend directory
+# Navigate to frontend directory (in a NEW terminal)
 cd frontend
 
 # Create virtual environment
@@ -122,8 +140,6 @@ py -3.11 -m venv venv
 # Activate virtual environment
 # On Windows:
 .\venv\Scripts\activate
-#On Gitbash:
-source .venv/Scripts/activate
 # On macOS/Linux:
 source venv/bin/activate
 
@@ -136,42 +152,7 @@ streamlit run app.py
 
 The frontend will open at: `http://localhost:8501`
 
----
-
-
-
-✅ **Advantages:**
-- No need to download models separately
-- No build time needed
-- Image is optimized and tested
-- Just pull and run!
-
----
-
-### Option 3: Build Your Own Docker Image (Advanced)
-
-If you want to build the image yourself with your own modifications:
-
-⚠️ **Important:** Make sure you've [downloaded the models](#download-models) first and placed them in `backend/model/` before building the Docker image.
-
-#### Build the Image
-```bash
-cd backend
-docker build -t your-username/skin-disease-api:v1.0 .
-```
-
-#### Run with Docker
-```bash
-docker run -p 8000:8000 \
-  -e GEMINI_API_KEY=your_api_key_here \
-  your-username/skin-disease-api:v1.0
-```
-
-#### Push Your Image to Docker Hub
-```bash
-docker login
-docker push your-username/skin-disease-api:v1.0
-```
+Make sure your backend is running on `http://localhost:8000` before starting the frontend!
 
 ---
 
