@@ -421,16 +421,6 @@ GEMINI_API_KEY=your_api_key_here
 
 ---
 
-## 🔐 Security Notes
-
-- Never commit `.env` file to version control
-- Use environment variables for sensitive data
-- API key is passed at runtime, not baked into Docker image
-- Implement HTTPS in production
-- Use secure session management
-
----
-
 ## 📝 Usage Example
 
 ### Via Web Interface
