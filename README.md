@@ -405,7 +405,7 @@ GEMINI_API_KEY=your_api_key_here
 |-----------|-----------|
 | **Backend** | FastAPI, Python 3.11 |
 | **Frontend** | Streamlit |
-| **CV Model** | EfficientNet (TensorFlow) |
+| **CV Model** | EfficientNet B7 (TensorFlow) |
 | **LLM** | Google Gemini API |
 | **Database** | SQLite (easily swappable) |
 | **Deployment** | Docker |
