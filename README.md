@@ -106,7 +106,7 @@ The Docker image is already built and uploaded to Docker Hub with all models inc
 #### Prerequisites
 - ✅ **Docker installed** - Download from [Docker Desktop](https://www.docker.com/products/docker-desktop)
 - ✅ **Docker running** - Make sure Docker Desktop is open and running
-- ⚠️ **Image size** - The image is **~3-4 GB**, so downloading may take 10-20 minutes depending on your internet speed
+- ⚠️ **Image size** - The image is **5.5 GB**, so downloading may take a while depending on your internet speed
 
 #### Step 1: Open PowerShell
 1. Open **PowerShell** or **Command Prompt**
@@ -136,18 +136,13 @@ docker run -p 8000:8000 -e GEMINI_API_KEY=your_api_key_here shafaqarefin/skin-di
 
 **Replace `your_api_key_here` with your actual Gemini API key!**
 
-Example:
+Example (Not Real API Key ):
 ```powershell
-docker run -p 8000:8000 -e GEMINI_API_KEY=AIzaSyBRwPgHWL2FC-V__nMeEtMPEtSxt2BtLAY shafaqarefin/skin-disease-api:latest
+docker run -p 8000:8000 -e GEMINI_API_KEY=AIzaBzBRwPgHUL9FC-V__nMeEtMPEtSxt2BtLAY shafaqarefin/skin-disease-api:latest
 ```
 
 The backend API will be available at: `http://localhost:8000`
 
-✅ **Advantages:**
-- No need to download models separately
-- No build time needed
-- Image is optimized and tested
-- Just pull and run!
 
 ⚠️ **Important Tips:**
 - Make sure Docker Desktop is running before pulling the image
