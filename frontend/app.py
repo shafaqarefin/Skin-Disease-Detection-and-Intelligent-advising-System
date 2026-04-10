@@ -142,6 +142,7 @@ if "user_id" not in st.session_state:
     st.session_state.system_context = None
     st.session_state.chat_history = []
     st.session_state.past_sessions = []
+    st.session_state.just_logged_out = False
 
 # Backend configuration
 backend_url = "http://localhost:8000"
@@ -194,12 +195,16 @@ def load_session_by_id(session_id: str):
 
 
 # Check if user is still logged in via URL params (persist across reloads)
-if "uid" in st.query_params and not st.session_state.authenticated:
+# But NOT if they just logged out
+if "uid" in st.query_params and not st.session_state.authenticated and not st.session_state.just_logged_out:
     st.session_state.user_id = int(st.query_params["uid"])
     st.session_state.username = st.query_params.get("username", "User")
     st.session_state.authenticated = True
     # Load past sessions after auto-login
     load_user_sessions()
+else:
+    # Reset the just_logged_out flag after one check
+    st.session_state.just_logged_out = False
 
 
 # AUTHENTICATION PAGE
@@ -285,6 +290,9 @@ else:
         st.markdown(f"### 👤 {st.session_state.username}")
 
         if st.button("🚪 Logout", use_container_width=True):
+            # Set flag to prevent auto-login
+            st.session_state.just_logged_out = True
+
             # Clear URL params to logout
             st.query_params.clear()
 
