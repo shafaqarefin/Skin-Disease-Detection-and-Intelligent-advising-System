@@ -100,17 +100,45 @@ The API will be available at: `http://localhost:8000`
 ### Option 2: Docker Deployment (Easiest - Pre-built Image) ⭐ RECOMMENDED
 
 The Docker image is already built and uploaded to Docker Hub with all models included. This is the **fastest way** to get the backend running!
-(https://hub.docker.com/repository/docker/shafaqarefin/skin-disease-api/general)
 
-#### Pull and Run Pre-built Image
-```bash
+**Docker Hub Repository:** https://hub.docker.com/r/shafaqarefin/skin-disease-api
+
+#### Prerequisites
+- ✅ **Docker installed** - Download from [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- ✅ **Docker running** - Make sure Docker Desktop is open and running
+- ⚠️ **Image size** - The image is **~3-4 GB**, so downloading may take 10-20 minutes depending on your internet speed
+
+#### Step 1: Open PowerShell
+1. Open **PowerShell** or **Command Prompt**
+2. Navigate to the backend directory:
+   ```powershell
+   cd backend
+   ```
+
+#### Step 2: Login to Docker Hub
+```powershell
+docker login
+# Enter your Docker Hub username and password
+# Success message: "Login Succeeded"
+```
+
+⚠️ **Important:** Make sure the login is successful before proceeding to the next step!
+
+#### Step 3: Pull and Run the Image
+```powershell
 # Pull the pre-built image (includes all models)
+# ⏳ This may take 10-20 minutes due to large file size
 docker pull shafaqarefin/skin-disease-api:latest
 
-# Run the container
-docker run -p 8000:8000 \
-  -e GEMINI_API_KEY=your_api_key_here \
-  shafaqarefin/skin-disease-api:latest
+# Run the container with your Gemini API key
+docker run -p 8000:8000 -e GEMINI_API_KEY=your_api_key_here shafaqarefin/skin-disease-api:latest
+```
+
+**Replace `your_api_key_here` with your actual Gemini API key!**
+
+Example:
+```powershell
+docker run -p 8000:8000 -e GEMINI_API_KEY=AIzaSyBRwPgHWL2FC-V__nMeEtMPEtSxt2BtLAY shafaqarefin/skin-disease-api:latest
 ```
 
 The backend API will be available at: `http://localhost:8000`
@@ -120,6 +148,13 @@ The backend API will be available at: `http://localhost:8000`
 - No build time needed
 - Image is optimized and tested
 - Just pull and run!
+
+⚠️ **Important Tips:**
+- Make sure Docker Desktop is running before pulling the image
+- `docker login` must be successful before pulling
+- The `/` in `shafaqarefin/skin-disease-api` is required (username/repository format)
+- Image download is large (~3-4 GB) - be patient while pulling
+- Don't share your API key - use environment variables or `.env` files
 
 ---
 
