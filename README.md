@@ -395,8 +395,6 @@ Create a `.env` file in the backend directory:
 
 ```env
 GEMINI_API_KEY=your_api_key_here
-DATABASE_URL=sqlite:///./test.db
-LLM_MODEL=gemini-pro-vision
 ```
 
 ---
@@ -451,37 +449,10 @@ curl -X POST "http://localhost:8000/chat" \
   }'
 ```
 
----
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
----
 
-## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
 
----
 
-## ⚠️ Disclaimer
-
-**This application is for educational and informational purposes only.**
-- Not a substitute for professional medical advice
-- Always consult a qualified dermatologist for diagnosis
-- Results should never be used for self-treatment
-
----
-
-## 📞 Support
-
-For issues, questions, or suggestions, please open an issue on GitHub.
-
----
-
-**Made with ❤️ using AI and Computer Vision**
