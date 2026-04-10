@@ -128,7 +128,7 @@ The backend API will be available at: `http://localhost:8000`
 #### Prerequisites
 - Python 3.11
 - pip/conda
-- Backend API running (from Backend Setup above)
+- Backend API running (from Backend Setup above by either way)
 
 #### Setup Steps
 ```bash
@@ -139,6 +139,7 @@ cd frontend
 py -3.11 -m venv venv
 
 # Activate virtual environment
+
 # On Windows:
 .\venv\Scripts\activate
 
