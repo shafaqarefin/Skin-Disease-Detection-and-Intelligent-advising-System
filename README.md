@@ -125,7 +125,7 @@ The backend API will be available at: `http://localhost:8000`
 ## 🎨 Frontend Setup
 
 #### Prerequisites
-- Python 3.11+
+- Python 3.11
 - pip/conda
 - Backend API running (from Backend Setup above)
 
@@ -156,7 +156,13 @@ Make sure your backend is running on `http://localhost:8000` before starting the
 
 ---
 
-## 📖 API Documentation
+## � Database Schema
+
+![Database Schema Diagram](docs/images/db_diagram.png)
+
+---
+
+## �📖 API Documentation
 
 ### Base URL
 ```
