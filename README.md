@@ -1,6 +1,6 @@
 # 🏥 Skin Disease Analyzer
 
-An AI-powered web application that analyzes skin images and provides disease recommendations using **EfficientNet CV model** combined with **Google Gemini LLM** for intelligent medical insights.
+An AI-powered web application that analyzes skin images and provides disease recommendations using **EfficientNet CV model** combined with **Google Gemini LLM** and **SQLLite** for intelligent medical insights.
 
 ---
 
